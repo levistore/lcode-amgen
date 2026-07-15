@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Am generator by lcode - Alight Motion Premium Account Generator</title>
+    <!-- Google Fonts: Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neo': '4px 4px 0px 0px #0F172A',
+                        'neo-lg': '8px 8px 0px 0px #0F172A',
+                        'neo-sm': '2px 2px 0px 0px #0F172A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Neobrutalism Layout & Dots Grid Background */
+        body {
+            background-color: #FAF9F5;
+            background-image: 
+                radial-gradient(#0f172a 1.2px, transparent 1.2px), 
+                radial-gradient(#0f172a 1.2px, #faf9f5 1.2px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+            color: #0F172A;
+            overflow-x: hidden;
+        }
+
+        .neo-border {
+            border: 3.5px solid #0F172A;
+        }
+
+        .neo-shadow-yellow {
+            box-shadow: 6px 6px 0px 0px #FACC15;
+        }
+        
+        .neo-shadow-pink {
+            box-shadow: 6px 6px 0px 0px #EC4899;
+        }
+
+        .neo-shadow-green {
+            box-shadow: 6px 6px 0px 0px #22C55E;
+        }
+
+        .neo-shadow-purple {
+            box-shadow: 6px 6px 0px 0px #A855F7;
+        }
+
+        /* Neobrutalist Button Press Effect */
+        .neo-btn {
+            transition: all 0.1s ease;
+        }
+        .neo-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #0F172A;
+        }
+        .neo-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #0F172A;
+        }
+
+        /* Active Tab Highlight Style */
+        .tab-active {
+            background-color: #FACC15;
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px 0px #0F172A;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                transform: translateY(100px) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+        .toast-show {
+            animation: slideUp 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes pulseBorder {
+            0%, 100% { border-color: #0F172A; }
+            50% { border-color: #EC4899; }
+        }
+        .pulse-border {
+            animation: pulseBorder 1.5s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+
+        .terminal-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .terminal-scroll::-webkit-scrollbar-track {
+            background: #1E293B;
+            border-left: 2.5px solid #0F172A;
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb {
+            background: #475569;
+            border: 2px solid #1E293B;
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb:hover {
+            background: #64748B;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-10 px-4 flex flex-col items-center">
+
+    <!-- CONTAINER -->
+    <main class="w-full max-w-4xl flex flex-col gap-8">
+        
+        <!-- HEADER / BRANDING -->
+        <header class="w-full bg-[#FF7E40] neo-border p-6 shadow-neo flex flex-col md:flex-row justify-between items-center gap-4 relative overflow-hidden">
+            <!-- Decorative stripes -->
+            <div class="absolute inset-0 opacity-10 pointer-events-none bg-[linear-gradient(45deg,#000_25%,transparent_25%,transparent_50%,#000_50%,#000_75%,transparent_75%,transparent)] bg-[size:40px_40px]"></div>
+            
+            <div class="relative z-10 flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
+                <!-- SVG Logo -->
+                <div class="w-16 h-16 bg-white neo-border flex items-center justify-center p-2 rounded-none shadow-neo-sm transform -rotate-3">
+                    <svg class="w-full h-full text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                        <polyline points="2 17 12 22 22 17" />
+                        <polyline points="2 12 12 17 22 12" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight select-none">
+                        Am generator by lcode
+                    </h1>
+                    <p class="text-slate-900 font-medium text-sm mt-1 uppercase tracking-wider">
+                        Premium membership automation engine v2.0
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Uptime/Status Indicator Box -->
+            <div id="status-indicator" class="relative z-10 bg-white neo-border px-4 py-2 flex items-center gap-3 shadow-neo-sm transform rotate-1 select-none">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span id="status-led" class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                </span>
+                <span id="status-text" class="font-bold text-xs uppercase tracking-wider text-slate-700">Connecting Server...</span>
+            </div>
+        </header>
+
+        <!-- SYSTEM CONFIG QUICK CARD -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Left Info Panel -->
+            <div class="bg-[#22C55E] neo-border p-6 shadow-neo flex flex-col justify-between">
+                <div>
+                    <span class="bg-white text-slate-900 text-xs font-bold px-2.5 py-1 neo-border shadow-neo-sm uppercase tracking-wider">SYSTEM INFO</span>
+                    <h2 class="text-2xl font-bold mt-4 leading-snug">Auto Turnstile Bypass & Ad Skipping Automation</h2>
+                    <p class="mt-2 text-slate-900 text-sm leading-relaxed">
+                        Web panel ini terhubung dengan automation worker berbasis Puppeteer. Sistem secara otomatis melewati tantangan Cloudflare Turnstile, memverifikasi Firebase Magic Link, dan mengklaim VIP Alight Motion.
+                    </p>
+                </div>
+                <div class="mt-6 flex flex-wrap gap-2 text-xs font-bold uppercase">
+                    <div id="badge-session" class="bg-white neo-border px-3 py-1 flex items-center gap-1.5 shadow-neo-sm opacity-50">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                        Session: Offline
+                    </div>
+                    <div id="badge-cf" class="bg-white neo-border px-3 py-1 flex items-center gap-1.5 shadow-neo-sm opacity-50">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.75 3.75 0 0 1 21 12Z"/></svg>
+                        WAF Shield: Secured
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Fast-Actions Panel -->
+            <div class="bg-[#A855F7] neo-border p-6 shadow-neo flex flex-col justify-between">
+                <div>
+                    <span class="bg-white text-slate-900 text-xs font-bold px-2.5 py-1 neo-border shadow-neo-sm uppercase tracking-wider">QUICK ACTION</span>
+                    <h2 class="text-2xl font-bold mt-4 leading-snug">Keep-Alive Session Service</h2>
+                    <p class="mt-2 text-slate-900 text-sm leading-relaxed">
+                        Jaga agar sesi login master dan bypass token tetap segar agar proses auto-bypass Turnstile selanjutnya berjalan secara instan dan bebas kegagalan.
+                    </p>
+                </div>
+                <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                    <button onclick="triggerKeepAlive()" class="flex-1 bg-white hover:bg-yellow-100 text-slate-900 font-bold py-3 px-4 neo-border shadow-neo-sm neo-btn flex items-center justify-center gap-2 uppercase tracking-wide text-xs">
+                        <svg id="keepalive-btn-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+                        Refresh Session
+                    </button>
+                    <button onclick="checkStatus(true)" class="bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-4 neo-border shadow-neo-sm neo-btn flex items-center justify-center gap-2 uppercase tracking-wide text-xs">
+                        <svg id="status-btn-icon" class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.75 3.75 0 0 1 21 12Z"/></svg>
+                        Check Status
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN TABS CONTROL -->
+        <section class="w-full flex gap-3 select-none">
+            <button onclick="switchTab('tab-wizard')" id="btn-tab-wizard" class="flex-1 py-3 px-4 text-xs md:text-sm font-bold uppercase tracking-wider neo-border shadow-neo-sm neo-btn bg-white tab-active">
+                Generate Account
+            </button>
+            <button onclick="switchTab('tab-claim')" id="btn-tab-claim" class="flex-1 py-3 px-4 text-xs md:text-sm font-bold uppercase tracking-wider neo-border shadow-neo-sm neo-btn bg-white">
+                Quick Claim VIP
+            </button>
+            <button onclick="switchTab('tab-cookies')" id="btn-tab-cookies" class="flex-1 py-3 px-4 text-xs md:text-sm font-bold uppercase tracking-wider neo-border shadow-neo-sm neo-btn bg-white">
+                Cookie Manager
+            </button>
+        </section>
+
+        <!-- TABS PANELS CONTENT -->
+        <section class="neo-border bg-white shadow-neo p-6 md:p-8 relative min-h-[380px]">
+            <!-- TAB 1: GENERATE ACCOUNT (WIZARD) -->
+            <div id="panel-tab-wizard" class="tab-panel flex flex-col gap-6">
+                <div>
+                    <h3 class="text-2xl font-bold uppercase tracking-wide">Generate New Account Premium</h3>
+                    <p class="text-slate-600 text-sm mt-1">Masukkan alamat email tujuan untuk menerima Magic Link verifikasi, lalu selesaikan tahapan klaim VIP.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <!-- Wizard Actions Form -->
+                    <div class="flex flex-col gap-6">
+                        <!-- Step 1 Form -->
+                        <div class="bg-[#FAF9F5] p-5 neo-border relative">
+                            <span class="absolute -top-3.5 left-4 bg-[#FACC15] text-slate-900 text-xs font-bold px-2.5 py-1 neo-border shadow-neo-sm uppercase tracking-wider">STEP 1: SEND EMAIL</span>
+                            <div class="mt-2 flex flex-col gap-3">
+                                <label for="wizard-email" class="text-xs font-bold uppercase text-slate-700">Email Address (Gmail)</label>
+                                <div class="flex flex-col sm:flex-row gap-2.5">
+                                    <div class="relative flex-1">
+                                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                                            <svg class="h-5 w-5 text-slate-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+                                        </div>
+                                        <input type="email" id="wizard-email" placeholder="example@gmail.com" class="w-full bg-white neo-border pl-11 pr-4 py-3 font-medium placeholder-slate-400 focus:outline-none focus:bg-yellow-50 focus:ring-0">
+                                    </div>
+                                    <button onclick="sendWizardLink()" id="btn-send-link" class="bg-[#EC4899] hover:bg-rose-400 text-white font-bold px-5 py-3 neo-border shadow-neo-sm neo-btn uppercase tracking-wider text-sm flex items-center justify-center gap-2">
+                                        <svg id="send-btn-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/></svg>
+                                        <span>Send Link</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 Form -->
+                        <div id="step-2-container" class="bg-[#FAF9F5] p-5 neo-border relative opacity-50 pointer-events-none transition-all duration-300">
+                            <span class="absolute -top-3.5 left-4 bg-[#FF7E40] text-slate-900 text-xs font-bold px-2.5 py-1 neo-border shadow-neo-sm uppercase tracking-wider">STEP 2: CLAIM VIP</span>
+                            <div class="mt-2 flex flex-col gap-3">
+                                <label for="wizard-link" class="text-xs font-bold uppercase text-slate-700">Firebase Magic Link</label>
+                                <div class="flex flex-col gap-3">
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                                            <svg class="h-5 w-5 text-slate-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
+                                        </div>
+                                        <input type="text" id="wizard-link" placeholder="Paste the magic link url from your email..." class="w-full bg-white neo-border pl-11 pr-4 py-3 font-medium placeholder-slate-400 focus:outline-none focus:bg-yellow-50 focus:ring-0">
+                                    </div>
+                                    <button onclick="verifyAndClaimWizard()" id="btn-verify-claim" class="w-full bg-[#22C55E] hover:bg-green-400 text-slate-900 font-bold py-3 px-4 neo-border shadow-neo-sm neo-btn uppercase tracking-wider text-sm flex items-center justify-center gap-2">
+                                        <svg id="verify-btn-icon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.75 3.75 0 0 1 21 12Z"/></svg>
+                                        <span>Verify & Claim Premium</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wizard Receipt Panel / Guide -->
+                    <div class="flex flex-col gap-6">
+                        <div class="bg-[#FFFBEB] p-5 neo-border shadow-neo-sm relative">
+                            <span class="absolute -top-3.5 left-4 bg-slate-900 text-white text-xs font-bold px-2.5 py-1 neo-border shadow-neo-sm uppercase tracking-wider">GUIDE / CARA PAKAI</span>
+                            <ul class="mt-2 space-y-3 text-sm text-slate-800 font-medium">
+                                <li class="flex gap-2">
+                                    <div class="min-w-5 h-5 bg-[#FACC15] neo-border flex items-center justify-center text-xs font-bold">1</div>
+                                    <span>Masukkan Email Gmail aktif dan klik <strong>Send Link</strong>.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <div class="min-w-5 h-5 bg-[#FACC15] neo-border flex items-center justify-center text-xs font-bold">2</div>
+                                    <span>Buka Gmail kamu (cek folder <strong>Spam / Promosi</strong>). Cari email dari "Alight Motion".</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <div class="min-w-5 h-5 bg-[#FACC15] neo-border flex items-center justify-center text-xs font-bold">3</div>
+                                    <span>Klik kanan tombol <strong>Sign in to Alight Motion</strong>, lalu salin link URL-nya (Copy Link Address).</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <div class="min-w-5 h-5 bg-[#FACC15] neo-border flex items-center justify-center text-xs font-bold">4</div>
+                                    <span>Tempel link tersebut di kolom <strong>STEP 2</strong> dan klik <strong>Verify & Claim Premium</strong>.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- VIP Receipt Box (hidden until successful completion) -->
+                        <div id="receipt-card" class="hidden bg-[#FF8A00] p-5 neo-border shadow-neo-sm relative toast-show flex-col gap-4">
+                            <span class="absolute -top-3.5 left-4 bg-white text-slate-900 text-xs font-bold px-2.5 py-1 neo-border shadow-neo-sm uppercase tracking-wider">MEMBERSHIP UPGRADE</span>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-white neo-border flex items-center justify-center shadow-neo-sm transform -rotate-6">
+                                    <svg class="w-6 h-6 text-slate-900" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-extrabold text-lg">VIP MEMBERSHIP ACTIVE!</h4>
+                                    <p class="text-xs uppercase font-bold text-slate-900" id="receipt-email"></p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-3 neo-border text-xs font-mono font-bold flex flex-col gap-1.5">
+                                <div>Status: <span class="text-green-600">ACTIVE VIP</span></div>
+                                <div>Order Code: <span class="text-indigo-600" id="receipt-order"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: QUICK CLAIM (SESSION ACTIVE) -->
+            <div id="panel-tab-claim" class="tab-panel hidden flex-col gap-6">
+                <div>
+                    <h3 class="text-2xl font-bold uppercase tracking-wide">Quick Claim Premium</h3>
+                    <p class="text-slate-600 text-sm mt-1">Gunakan opsi ini jika email target sudah pernah diverifikasi sebelumnya, atau sesi login di browser server masih aktif.</p>
+                </div>
+
+                <div class="bg-[#FAF9F5] p-6 neo-border flex flex-col md:flex-row items-center justify-between gap-6 relative">
+                    <span class="absolute -top-3.5 left-4 bg-[#A855F7] text-white text-xs font-bold px-2.5 py-1 neo-border shadow-neo-sm uppercase tracking-wider">FAST PATH BYPASS</span>
+                    
+                    <div class="flex gap-4 items-start flex-1">
+                        <div class="w-12 h-12 bg-white neo-border flex items-center justify-center p-2 rounded-none shadow-neo-sm transform -rotate-3 shrink-0">
+                            <svg class="w-full h-full text-slate-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-extrabold text-lg">Instant Ads Redirection Bypass & Claim VIP</h4>
+                            <p class="text-slate-600 text-sm mt-1">
+                                Worker akan menembak endpoint iklan `/api/ads/record` sebanyak 5 kali dan mengirimkan request ke `/api/generator/apply` untuk mengaktifkan lisensi VIP pada sesi aktif.
+                            </p>
+                        </div>
+                    </div>
+
+                    <button onclick="triggerQuickClaim()" id="btn-quick-claim" class="bg-[#FACC15] hover:bg-yellow-300 text-slate-900 font-extrabold py-4 px-8 neo-border shadow-neo-sm neo-btn uppercase tracking-wider text-sm flex items-center justify-center gap-2 whitespace-nowrap w-full md:w-auto">
+                        <svg id="claim-btn-icon" class="w-5 h-5 text-slate-900 animate-pulse" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.467 5.99 5.99 0 0 0-1.925 3.546 5.974 5.974 0 0 1-2.133-1A3.75 3.75 0 0 0 12 18Z"/></svg>
+                        <span>Bypass & Claim VIP</span>
+                    </button>
+                </div>
+
+                <div class="bg-blue-50 p-4 neo-border text-slate-800 font-medium text-sm flex items-start gap-3">
+                    <svg class="w-5 h-5 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg>
+                    <div>
+                        <strong>Catatan:</strong> Menu bypass langsung mengandalkan file <code>config_prem.json</code> di folder server. Jika proses gagal dengan error status HTTP 401 (Unauthorized), harap lakukan login ulang via <strong>Generate Account</strong> terlebih dahulu.
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: COOKIE MANAGER -->
+            <div id="panel-tab-cookies" class="tab-panel hidden flex-col gap-6">
+                <div>
+                    <h3 class="text-2xl font-bold uppercase tracking-wide">Cookie & Session Configuration</h3>
+                    <p class="text-slate-600 text-sm mt-1">Kelola dan pantau session cookie serta WAF Cloudflare clearance token secara manual untuk debugging dan pemeliharaan.</p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="bg-[#FAF9F5] p-5 neo-border relative flex flex-col gap-4">
+                        <span class="absolute -top-3.5 left-4 bg-[#22C55E] text-white text-xs font-bold px-2.5 py-1 neo-border shadow-neo-sm uppercase tracking-wider">MANUAL COOKIES INJECTION</span>
+                        
+                        <div class="flex flex-col gap-2.5">
+                            <label for="cookie-session" class="text-xs font-bold uppercase text-slate-700 flex items-center justify-between">
+                                <span>Session Cookie (Express/JWT Sesi amprem.irfanjawa.com)</span>
+                                <span class="text-slate-500 font-normal lowercase">Key: session</span>
+                            </label>
+                            <textarea id="cookie-session" rows="2" placeholder="Paste your target session token here..." class="w-full bg-white neo-border p-3 font-mono text-xs focus:outline-none focus:bg-yellow-50 focus:ring-0"></textarea>
+                        </div>
+
+                        <div class="flex flex-col gap-2.5">
+                            <label for="cookie-cf" class="text-xs font-bold uppercase text-slate-700 flex items-center justify-between">
+                                <span>Cloudflare Clearance Cookie (Turnstile clearance token)</span>
+                                <span class="text-slate-500 font-normal lowercase">Key: cf_clearance</span>
+                            </label>
+                            <textarea id="cookie-cf" rows="3" placeholder="Paste your Cloudflare Turnstile clearance token (cf_clearance) here..." class="w-full bg-white neo-border p-3 font-mono text-xs focus:outline-none focus:bg-yellow-50 focus:ring-0"></textarea>
+                        </div>
+
+                        <button onclick="saveConfigCookies()" id="btn-save-cookies" class="w-full bg-[#EC4899] hover:bg-rose-400 text-white font-extrabold py-3.5 px-4 neo-border shadow-neo-sm neo-btn uppercase tracking-wider text-sm flex items-center justify-center gap-2 mt-2">
+                            <svg id="save-btn-icon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                            <span>Inject & Update Cookies</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AUTOMATION CONSOLE LOG (ALWAYS VISIBLE WHEN JOB RUNNING) -->
+        <section id="terminal-section" class="w-full flex flex-col hidden toast-show">
+            <!-- Terminal Header -->
+            <div class="bg-slate-900 border-t-4 border-l-4 border-r-4 border-slate-900 text-white p-3.5 flex justify-between items-center select-none neo-border-lg rounded-t-none">
+                <div class="flex items-center gap-2.5">
+                    <!-- Custom SVG Terminal Icon -->
+                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5 11.25 12 6.75 16.5m6-1.5h6.75"/></svg>
+                    <span class="font-bold text-xs uppercase tracking-widest text-slate-300">Live Automation Console Terminal</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 bg-red-500 rounded-none border border-slate-900"></span>
+                    <span class="w-2.5 h-2.5 bg-yellow-500 rounded-none border border-slate-900"></span>
+                    <span class="w-2.5 h-2.5 bg-green-500 rounded-none border border-slate-900"></span>
+                </div>
+            </div>
+            <!-- Terminal Body -->
+            <div class="bg-slate-950 text-green-400 p-5 font-mono text-xs neo-border shadow-neo flex flex-col gap-3 min-h-[220px] max-h-[300px]">
+                <!-- Job details summary bar -->
+                <div class="border-b border-dashed border-slate-800 pb-2.5 flex flex-wrap justify-between items-center gap-2 text-slate-400">
+                    <div>
+                        <span class="text-slate-500 uppercase font-bold">Action:</span> <span id="term-action" class="font-bold text-slate-300">-</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-500 uppercase font-bold">Target:</span> <span id="term-target" class="font-bold text-slate-300">-</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-500 uppercase font-bold">Job Status:</span> <span id="term-status" class="bg-yellow-500/20 text-yellow-400 px-2 py-0.5 neo-border shadow-neo-sm font-bold">-</span>
+                    </div>
+                </div>
+                <!-- Logs output list -->
+                <div id="terminal-logs" class="flex-1 overflow-y-auto terminal-scroll flex flex-col gap-1.5 select-text pr-2">
+                    <!-- Dynamic console log lines -->
+                </div>
+                <!-- Promp/Caret Indicator -->
+                <div class="border-t border-slate-900 pt-2 flex items-center gap-2 text-slate-500 font-bold select-none">
+                    <span>lcode-server@antigravity:~$</span>
+                    <span class="w-2 h-4 bg-green-400 cursor-blink"></span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 max-w-sm pointer-events-none">
+        <!-- Dynaimc toasts slide up here -->
+    </div>
+
+    <!-- CLIENT FRONTEND APP JS -->
+    <script>
+        // Active states & Globals
+        let activeTab = 'tab-wizard';
+        let currentJobId = null;
+        let jobPollInterval = null;
+        let jobLogsSimulateInterval = null;
+        let logIndex = 0;
+
+        // Sound / Haptic effects placeholder if needed
+        // API Endpoint mappings
+        const API = {
+            status: '/api/status',
+            send: '/api/send',
+            verify: '/api/verify',
+            claim: '/api/claim',
+            cookies: '/api/cookies',
+            keepalive: '/api/keepalive',
+            result: (id) => `/api/result/${id}`
+        };
+
+        // Initialize Web UI
+        document.addEventListener('DOMContentLoaded', () => {
+            checkStatus(false);
+            // Poll status every 10 seconds to keep UI state accurate
+            setInterval(() => checkStatus(false), 12000);
+        });
+
+        // Tab Switcher
+        function switchTab(tabId) {
+            if (activeTab === tabId) return;
+            
+            // Toggle classes
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+            document.getElementById(`panel-${tabId}`).classList.remove('hidden');
+
+            document.querySelectorAll('button[id^="btn-tab-"]').forEach(btn => {
+                btn.classList.remove('tab-active');
+            });
+            document.getElementById(`btn-${tabId}`).classList.add('tab-active');
+            
+            activeTab = tabId;
+        }
+
+        // Display Toast Notification (Neobrutalism Style)
+        function showToast(title, message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            // Custom Color styling
+            let bg = 'bg-[#22C55E]'; // success
+            let text = 'text-slate-900';
+            if (type === 'error') {
+                bg = 'bg-[#F43F5E] text-white';
+            } else if (type === 'info') {
+                bg = 'bg-[#FACC15]';
+            }
+
+            toast.className = `${bg} ${text} p-4 neo-border shadow-neo toast-show flex gap-3 pointer-events-auto select-none`;
+            
+            // SVG Icons based on type
+            let iconSvg = '';
+            if (type === 'success') {
+                iconSvg = `<svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.75 3.75 0 0 1 21 12Z"/></svg>`;
+            } else if (type === 'error') {
+                iconSvg = `<svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>`;
+            } else {
+                iconSvg = `<svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg>`;
+            }
+
+            toast.innerHTML = `
+                <div class="mt-0.5">${iconSvg}</div>
+                <div>
+                    <h5 class="font-extrabold text-sm uppercase tracking-wide">${title}</h5>
+                    <p class="text-xs font-medium mt-0.5">${message}</p>
+                </div>
+            `;
+            
+            container.appendChild(toast);
+            
+            // Remove toast after 4.5 seconds
+            setTimeout(() => {
+                toast.classList.remove('toast-show');
+                toast.classList.add('opacity-0', 'translate-y-2', 'transition-all', 'duration-300');
+                setTimeout(() => toast.remove(), 300);
+            }, 4500);
+        }
+
+        // Get status and update badges
+        async function checkStatus(explicitClick = false) {
+            const statusLED = document.getElementById('status-led');
+            const statusText = document.getElementById('status-text');
+            const badgeSession = document.getElementById('badge-session');
+            const badgeCF = document.getElementById('badge-cf');
+            const btnIcon = document.getElementById('status-btn-icon');
+
+            if (explicitClick) {
+                btnIcon.classList.add('animate-spin');
+                showToast('Status Check', 'Menghubungkan ke API server...', 'info');
+            }
+
+            try {
+                const response = await fetch(API.status);
+                if (!response.ok) throw new Error('API server HTTP error');
+                
+                const data = await response.json();
+                
+                // Server is online!
+                statusLED.className = 'relative inline-flex rounded-full h-3 w-3 bg-[#22C55E]';
+                statusText.innerText = 'Server: Online';
+
+                // Session Status
+                if (data.cookies && data.cookies.session_configured) {
+                    badgeSession.classList.remove('opacity-50');
+                    badgeSession.innerHTML = `
+                        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.75 3.75 0 0 1 21 12Z"/></svg>
+                        Session: Active
+                    `;
+                } else {
+                    badgeSession.classList.add('opacity-50');
+                    badgeSession.innerHTML = `
+                        <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+                        Session: Empty
+                    `;
+                }
+
+                // Cloudflare WAF Cookie Status
+                if (data.cookies && data.cookies.cf_clearance_configured) {
+                    badgeCF.classList.remove('opacity-50');
+                    badgeCF.innerHTML = `
+                        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.75 3.75 0 0 1 21 12Z"/></svg>
+                        WAF Bypass: Fresh
+                    `;
+                } else {
+                    badgeCF.classList.add('opacity-50');
+                    badgeCF.innerHTML = `
+                        <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+                        WAF Shield: Unbypassed
+                    `;
+                }
+
+                // If on manual cookie page and fields empty, prefill previews
+                if (data.cookies) {
+                    if (document.getElementById('cookie-session').placeholder === 'Paste your target session token here...' && data.cookies.session_preview) {
+                        document.getElementById('cookie-session').placeholder = `Active Session: ${data.cookies.session_preview}`;
+                    }
+                    if (document.getElementById('cookie-cf').placeholder === 'Paste your Cloudflare Turnstile clearance token (cf_clearance) here...' && data.cookies.cf_clearance_preview) {
+                        document.getElementById('cookie-cf').placeholder = `Active WAF: ${data.cookies.cf_clearance_preview}`;
+                    }
+                }
+
+                if (explicitClick) showToast('Success', 'Status server berhasil diperbarui!', 'success');
+            } catch (err) {
+                statusLED.className = 'relative inline-flex rounded-full h-3 w-3 bg-[#F43F5E]';
+                statusText.innerText = 'Server: Offline';
+                
+                badgeSession.classList.add('opacity-50');
+                badgeSession.innerHTML = `<svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg> Sesi: Offline`;
+                
+                badgeCF.classList.add('opacity-50');
+                badgeCF.innerHTML = `<svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg> WAF: Offline`;
+
+                if (explicitClick) showToast('API Connection Error', 'Tidak dapat menghubungi server lokal.', 'error');
+            } finally {
+                if (explicitClick) btnIcon.classList.remove('animate-spin');
+            }
+        }
+
+        // Trigger keep alive trigger
+        async function triggerKeepAlive() {
+            const btnIcon = document.getElementById('keepalive-btn-icon');
+            btnIcon.classList.add('animate-spin');
+            showToast('Refresh Session', 'Worker diluncurkan untuk memutar token Cloudflare & memperbarui session...', 'info');
+
+            try {
+                const response = await fetch(API.keepalive, { method: 'POST' });
+                const data = await response.json();
+                if (data.success) {
+                    showToast('Refresh Success', data.message || 'Auto-Keep-Alive selesai!', 'success');
+                    checkStatus(false);
+                } else {
+                    showToast('Refresh Failed', data.error || 'Gagal menyegarkan cookie sesi.', 'error');
+                }
+            } catch (err) {
+                showToast('API Connection Error', 'Tidak dapat mengirim request ke server.', 'error');
+            } finally {
+                btnIcon.classList.remove('animate-spin');
+            }
+        }
+
+        // Wizard: Step 1 (Send Mail)
+        async function sendWizardLink() {
+            const emailInput = document.getElementById('wizard-email');
+            const email = emailInput.value.trim();
+            const btn = document.getElementById('btn-send-link');
+            const btnIcon = document.getElementById('send-btn-icon');
+
+            if (!email || !email.includes('@')) {
+                showToast('Validasi Gagal', 'Masukkan email Gmail yang valid.', 'error');
+                return;
+            }
+
+            // Disable input & show loading state
+            emailInput.disabled = true;
+            btn.disabled = true;
+            btnIcon.classList.add('animate-spin');
+            showToast('Sending Magic Link', 'Bot sedang memproses Turnstile bypass untuk mengirim email...', 'info');
+
+            try {
+                const response = await fetch(API.send, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showToast('Email Sent', 'Magic Link berhasil dikirim! Silakan periksa inbox / spam email Anda.', 'success');
+                    
+                    // Enable Step 2 container
+                    const step2 = document.getElementById('step-2-container');
+                    step2.classList.remove('opacity-50', 'pointer-events-none');
+                    step2.classList.add('pulse-border');
+                    
+                    // Pre-fill target email in receipt state
+                    document.getElementById('receipt-email').innerText = email;
+                    
+                    // Scroll to step 2 view on small screens
+                    step2.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    showToast('Email Failed', data.error || 'Gagal mengirim email.', 'error');
+                    emailInput.disabled = false;
+                }
+            } catch (err) {
+                showToast('API Connection Error', 'Gagal menghubungi server.', 'error');
+                emailInput.disabled = false;
+            } finally {
+                btn.disabled = false;
+                btnIcon.classList.remove('animate-spin');
+            }
+        }
+
+        // Wizard: Step 2 (Verify & Claim)
+        async function verifyAndClaimWizard() {
+            const email = document.getElementById('wizard-email').value.trim();
+            const linkInput = document.getElementById('wizard-link');
+            const magicLink = linkInput.value.trim();
+            const btn = document.getElementById('btn-verify-claim');
+            const btnIcon = document.getElementById('verify-btn-icon');
+
+            if (!magicLink) {
+                showToast('Validasi Gagal', 'Harap paste Magic Link Firebase dari email Anda.', 'error');
+                return;
+            }
+
+            // Disable & Loading state
+            linkInput.disabled = true;
+            btn.disabled = true;
+            btnIcon.classList.add('animate-spin');
+            
+            try {
+                const response = await fetch(API.verify, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, magicLink })
+                });
+
+                const data = await response.json();
+                if (data.success && data.job_id) {
+                    showToast('Job Accepted', 'Proses bypass verifikasi magic link dan iklan dimulai di server!', 'success');
+                    
+                    // Initialize Terminal Logging
+                    initTerminal(data.action, email, data.job_id);
+                    pollJobStatus(data.job_id);
+                } else {
+                    showToast('Verification Failed', data.error || 'Gagal mendaftarkan job verifikasi.', 'error');
+                    linkInput.disabled = false;
+                    btn.disabled = false;
+                    btnIcon.classList.remove('animate-spin');
+                }
+            } catch (err) {
+                showToast('API Connection Error', 'Gagal mendaftarkan job ke server.', 'error');
+                linkInput.disabled = false;
+                btn.disabled = false;
+                btnIcon.classList.remove('animate-spin');
+            }
+        }
+
+        // Trigger Quick Claim Tab
+        async function triggerQuickClaim() {
+            const btn = document.getElementById('btn-quick-claim');
+            const btnIcon = document.getElementById('claim-btn-icon');
+
+            btn.disabled = true;
+            btnIcon.classList.remove('animate-pulse');
+            btnIcon.classList.add('animate-spin');
+
+            try {
+                const response = await fetch(API.claim, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({})
+                });
+
+                const data = await response.json();
+                if (data.success && data.job_id) {
+                    showToast('Job Accepted', 'Bypass iklan 5 langkah langsung dijalankan!', 'success');
+                    initTerminal(data.action, 'Sesi Aktif', data.job_id);
+                    pollJobStatus(data.job_id);
+                } else {
+                    showToast('Claim Failed', data.error || 'Gagal mendaftarkan job bypass iklan.', 'error');
+                    btn.disabled = false;
+                    btnIcon.classList.remove('animate-spin');
+                    btnIcon.classList.add('animate-pulse');
+                }
+            } catch (err) {
+                showToast('API Connection Error', 'Gagal mendaftarkan job ke server.', 'error');
+                btn.disabled = false;
+                btnIcon.classList.remove('animate-spin');
+                btnIcon.classList.add('animate-pulse');
+            }
+        }
+
+        // Inject Cookies manually
+        async function saveConfigCookies() {
+            const session = document.getElementById('cookie-session').value.trim();
+            const cfClearance = document.getElementById('cookie-cf').value.trim();
+            const btn = document.getElementById('btn-save-cookies');
+            const btnIcon = document.getElementById('save-btn-icon');
+
+            if (!session && !cfClearance) {
+                showToast('Validation Error', 'Harap isi minimal salah satu cookie: Sesi atau WAF Clearance.', 'error');
+                return;
+            }
+
+            btn.disabled = true;
+            btnIcon.classList.add('animate-spin');
+
+            try {
+                const response = await fetch(API.cookies, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ session, cf_clearance: cfClearance })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    showToast('Cookies Saved', data.message || 'Cookie berhasil diinjeksi!', 'success');
+                    document.getElementById('cookie-session').value = '';
+                    document.getElementById('cookie-cf').value = '';
+                    checkStatus(false);
+                } else {
+                    showToast('Save Failed', data.error || 'Gagal menyimpan cookie.', 'error');
+                }
+            } catch (err) {
+                showToast('API Connection Error', 'Gagal menyimpan cookie ke server.', 'error');
+            } finally {
+                btn.disabled = false;
+                btnIcon.classList.remove('animate-spin');
+            }
+        }
+
+        // Terminal Log Management
+        function initTerminal(action, target, jobId) {
+            // Show terminal section
+            const termSec = document.getElementById('terminal-section');
+            termSec.classList.remove('hidden');
+            termSec.scrollIntoView({ behavior: 'smooth' });
+
+            document.getElementById('term-action').innerText = action.toUpperCase();
+            document.getElementById('term-target').innerText = target;
+            
+            const termStatus = document.getElementById('term-status');
+            termStatus.innerText = 'PROCESSING';
+            termStatus.className = 'bg-yellow-500/20 text-yellow-400 px-2 py-0.5 neo-border shadow-neo-sm font-bold uppercase';
+
+            // Clear old logs
+            const logsDiv = document.getElementById('terminal-logs');
+            logsDiv.innerHTML = '';
+            logIndex = 0;
+
+            // Start simulated logs to provide active physical feedback
+            startSimulatedLogs();
+        }
+
+        function appendLogLine(type, message) {
+            const logsDiv = document.getElementById('terminal-logs');
+            const timeStr = new Date().toLocaleTimeString('id-ID');
+            
+            let color = 'text-green-400';
+            let prefix = ' [*]';
+            
+            if (type === 'error') {
+                color = 'text-rose-500 font-bold';
+                prefix = ' [!]';
+            } else if (type === 'success') {
+                color = 'text-[#22C55E] font-bold';
+                prefix = ' [✓]';
+            } else if (type === 'info') {
+                color = 'text-slate-300';
+                prefix = ' [~]';
+            } else if (type === 'step') {
+                color = 'text-yellow-400';
+                prefix = ' [▶]';
+            }
+
+            const line = document.createElement('div');
+            line.className = `flex gap-2 leading-relaxed ${color}`;
+            line.innerHTML = `<span class="text-slate-500 font-normal select-none">[${timeStr}]${prefix}</span> <span>${message}</span>`;
+            logsDiv.appendChild(line);
+            
+            // Scroll to bottom
+            logsDiv.scrollTop = logsDiv.scrollHeight;
+        }
+
+        const SIM_STEPS = [
+            { t: 0, type: 'info', m: 'Melakukan handshake dengan unified server backend...' },
+            { t: 1500, type: 'info', m: 'Worker child_process diluncurkan (Lock acquired).' },
+            { t: 3000, type: 'info', m: 'Inisialisasi rebrowser-puppeteer stealth engine...' },
+            { t: 4500, type: 'info', m: 'Mendapatkan proxy acak dengan sticky session...' },
+            { t: 6500, type: 'info', m: 'Proxy Oxylabs berhasil ditautkan: http://dc.oxylabs.io:8000' },
+            { t: 8500, type: 'info', m: 'Membuka target web: https://amprem.irfanjawa.com/dashboard/generator' },
+            { t: 11000, type: 'info', m: 'Cloudflare Turnstile WAF terdeteksi di halaman utama.' },
+            { t: 13000, type: 'step', m: 'Turnstile Challenge: Mencari widget tantangan turnstile...' },
+            { t: 15500, type: 'step', m: 'Turnstile Challenge: Menemukan Turnstile iframe tag.' },
+            { t: 18000, type: 'step', m: 'Turnstile Challenge: Klik koordinat tengah frame turnstile (Auto-Bypass)...' },
+            { t: 21500, type: 'info', m: 'Menunggu validasi clearance cookie oleh Cloudflare...' },
+            { t: 24500, type: 'success', m: 'Turnstile Bypassed! Cookie cf_clearance berhasil disimpan.' },
+            { t: 27000, type: 'info', m: 'Memeriksa sesi login master serbamurahstore123@gmail.com...' },
+            { t: 30000, type: 'info', m: 'Sesi tersimpan valid. Mulai membersihkan cache target...' },
+            { t: 33000, type: 'info', m: 'Firebase Auth LocalStorage/IndexedDB dibersihkan (Anti-Stuck).' },
+            { t: 36000, type: 'step', m: 'Proses magic link: Menginjeksi link verifikasi ke backend...' },
+            { t: 39500, type: 'success', m: 'Bypass magic link berhasil! Sesi target didaftarkan.' },
+            { t: 42000, type: 'info', m: 'Memulai reload browser untuk sinkronisasi akun target...' },
+            { t: 45000, type: 'info', m: 'Bypass Ads redirection: Memulai 5 tahapan record iklan...' },
+            { t: 47000, type: 'step', m: 'Bypass Ads: Merekam record iklan Step [1/5]...' },
+            { t: 49500, type: 'step', m: 'Bypass Ads: Merekam record iklan Step [2/5]...' },
+            { t: 52000, type: 'step', m: 'Bypass Ads: Merekam record iklan Step [3/5]...' },
+            { t: 54500, type: 'step', m: 'Bypass Ads: Merekam record iklan Step [4/5]...' },
+            { t: 57000, type: 'step', m: 'Bypass Ads: Merekam record iklan Step [5/5]...' },
+            { t: 59500, type: 'success', m: 'Ads Bypass Selesai! Mengambil jeda 3 detik untuk sinkronisasi DB...' },
+            { t: 63000, type: 'info', m: 'Mengirimkan membership upgrade apply ke endpoint `/api/generator/apply`...' },
+            { t: 66000, type: 'info', m: 'Menunggu konfirmasi klaim VIP dari server...' }
+        ];
+
+        function startSimulatedLogs() {
+            if (jobLogsSimulateInterval) clearTimeout(jobLogsSimulateInterval);
+            
+            logIndex = 0;
+            function runNextSim() {
+                if (logIndex < SIM_STEPS.length) {
+                    const step = SIM_STEPS[logIndex];
+                    appendLogLine(step.type, step.m);
+                    logIndex++;
+                    
+                    const nextDelay = logIndex < SIM_STEPS.length ? 
+                        SIM_STEPS[logIndex].t - step.t : 2000;
+                    
+                    jobLogsSimulateInterval = setTimeout(runNextSim, nextDelay);
+                }
+            }
+            runNextSim();
+        }
+
+        // Poll API for Job Status
+        function pollJobStatus(jobId) {
+            currentJobId = jobId;
+            if (jobPollInterval) clearInterval(jobPollInterval);
+
+            jobPollInterval = setInterval(async () => {
+                try {
+                    const response = await fetch(API.result(jobId));
+                    if (!response.ok) return; // Ignore brief network spikes
+
+                    const data = await response.json();
+                    
+                    if (data.status === 'done') {
+                        // Job Completed successfully!
+                        clearInterval(jobPollInterval);
+                        if (jobLogsSimulateInterval) clearTimeout(jobLogsSimulateInterval);
+                        
+                        // Fill all skipped logs for completeness
+                        for(let i = logIndex; i < SIM_STEPS.length; i++) {
+                            appendLogLine(SIM_STEPS[i].type, SIM_STEPS[i].m);
+                        }
+
+                        // Terminal styling update
+                        const termStatus = document.getElementById('term-status');
+                        termStatus.innerText = 'SUCCESS';
+                        termStatus.className = 'bg-[#22C55E]/20 text-[#22C55E] px-2 py-0.5 neo-border shadow-neo-sm font-bold uppercase';
+
+                        // Print success receipt inside terminal
+                        appendLogLine('success', '---------------------------------------------------');
+                        appendLogLine('success', '✔ ALIGHT MOTION PREMIUM MEMBERSHIP ACTIVE');
+                        appendLogLine('success', `✔ Target Account: ${data.receipt ? data.receipt.email : data.email}`);
+                        appendLogLine('success', `✔ Order Code: ${data.receipt ? data.receipt.codeOrder : 'VIP-SUCCESS-ACTIVE'}`);
+                        appendLogLine('success', `✔ Message: ${data.message || 'VIP upgraded successfully.'}`);
+                        appendLogLine('success', '---------------------------------------------------');
+
+                        showToast('VIP Upgrade Success', 'Akun Alight Motion Anda telah berhasil di-upgrade ke VIP Premium!', 'success');
+                        
+                        // Display Receipt Box if on wizard
+                        if (activeTab === 'tab-wizard') {
+                            document.getElementById('receipt-order').innerText = data.receipt ? data.receipt.codeOrder : 'VIP-SUCCESS-ACTIVE';
+                            document.getElementById('receipt-card').classList.remove('hidden');
+                        }
+
+                        // Reset buttons and states
+                        resetJobActions();
+                        checkStatus(false);
+
+                    } else if (data.status === 'failed') {
+                        // Job Failed
+                        clearInterval(jobPollInterval);
+                        if (jobLogsSimulateInterval) clearTimeout(jobLogsSimulateInterval);
+
+                        const termStatus = document.getElementById('term-status');
+                        termStatus.innerText = 'FAILED';
+                        termStatus.className = 'bg-rose-500/20 text-rose-500 px-2 py-0.5 neo-border shadow-neo-sm font-bold uppercase';
+
+                        appendLogLine('error', '---------------------------------------------------');
+                        appendLogLine('error', '✖ PROSES AUTOMATION WORKER GAGAL');
+                        appendLogLine('error', `✖ Deskripsi Error: ${data.message || 'Terjadi kesalahan tidak diketahui.'}`);
+                        if (data.details && data.details.verification && data.details.verification.error) {
+                            appendLogLine('error', `✖ Detail Verifikasi: ${data.details.verification.error}`);
+                        }
+                        appendLogLine('error', '---------------------------------------------------');
+
+                        showToast('Automation Job Failed', data.message || 'Worker gagal melengkapi klaim VIP.', 'error');
+                        resetJobActions();
+                        checkStatus(false);
+                    }
+                } catch(err) {
+                    // Fail silently, retry next loop
+                }
+            }, 2500);
+        }
+
+        function resetJobActions() {
+            // Re-enable Inputs
+            document.getElementById('wizard-email').disabled = false;
+            
+            const linkInput = document.getElementById('wizard-link');
+            linkInput.disabled = false;
+            linkInput.value = '';
+
+            document.getElementById('btn-verify-claim').disabled = false;
+            document.getElementById('verify-btn-icon').classList.remove('animate-spin');
+
+            const step2 = document.getElementById('step-2-container');
+            step2.classList.remove('pulse-border');
+
+            const claimBtn = document.getElementById('btn-quick-claim');
+            claimBtn.disabled = false;
+            
+            const claimIcon = document.getElementById('claim-btn-icon');
+            claimIcon.classList.remove('animate-spin');
+            claimIcon.classList.add('animate-pulse');
+        }
+    </script>
+</body>
+</html>

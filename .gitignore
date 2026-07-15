@@ -1,0 +1,5 @@
+node_modules
+config_prem.json
+res_node.json
+.DS_Store
+.env
