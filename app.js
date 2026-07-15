@@ -942,7 +942,9 @@ function startAPIServer() {
             return res.end();
         }
 
-        const urlObj = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+        // Use a static base URL to avoid parser failures when req.headers.host contains duplicate values or invalid characters
+        // (common on mobile carrier networks, VPNs, or certain reverse proxy environments).
+        const urlObj = new URL(req.url, 'http://localhost');
         const pathname = urlObj.pathname.replace(/\/+$/, '') || '/';
         const method = req.method.toUpperCase();
 
