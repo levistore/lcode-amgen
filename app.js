@@ -224,12 +224,13 @@ async function runSolver() {
         arg.startsWith('--proxy-server=') ? `--proxy-server=${newProxyUrl}` : arg
     );
 
+    const isRailway = !!process.env.RAILWAY_ENVIRONMENT;
     browser = await puppeteer.launch({
-      headless: false,
+      headless: isRailway ? true : false,
       executablePath: execPath,
-      args: dynamicArgs,
+      args: isRailway ? [...dynamicArgs, '--disable-gpu'] : dynamicArgs,
       ignoreHTTPSErrors: true,
-      defaultViewport: null,
+      defaultViewport: { width: 1920, height: 1080 },
     });
 
     const pages = await browser.pages();
