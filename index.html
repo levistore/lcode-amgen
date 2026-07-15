@@ -621,7 +621,7 @@
                     showToast('Refresh Success', data.message || 'Auto-Keep-Alive selesai!', 'success');
                     checkStatus(false);
                 } else {
-                    showToast('Refresh Failed', data.error || 'Gagal menyegarkan cookie sesi.', 'error');
+                    showToast('Refresh Failed', data.message || data.error || 'Gagal menyegarkan cookie sesi.', 'error');
                 }
             } catch (err) {
                 showToast('API Connection Error', 'Tidak dapat mengirim request ke server.', 'error');
@@ -671,7 +671,7 @@
                     // Scroll to step 2 view on small screens
                     step2.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    showToast('Email Failed', data.error || 'Gagal mengirim email.', 'error');
+                    showToast('Email Failed', data.message || data.error || 'Gagal mengirim email.', 'error');
                     emailInput.disabled = false;
                 }
             } catch (err) {
@@ -716,7 +716,7 @@
                     initTerminal(data.action, email, data.job_id);
                     pollJobStatus(data.job_id);
                 } else {
-                    showToast('Verification Failed', data.error || 'Gagal mendaftarkan job verifikasi.', 'error');
+                    showToast('Verification Failed', data.message || data.error || 'Gagal mendaftarkan job verifikasi.', 'error');
                     linkInput.disabled = false;
                     btn.disabled = false;
                     btnIcon.classList.remove('animate-spin');
@@ -751,7 +751,7 @@
                     initTerminal(data.action, 'Sesi Aktif', data.job_id);
                     pollJobStatus(data.job_id);
                 } else {
-                    showToast('Claim Failed', data.error || 'Gagal mendaftarkan job bypass iklan.', 'error');
+                    showToast('Claim Failed', data.message || data.error || 'Gagal mendaftarkan job bypass iklan.', 'error');
                     btn.disabled = false;
                     btnIcon.classList.remove('animate-spin');
                     btnIcon.classList.add('animate-pulse');
@@ -793,7 +793,7 @@
                     document.getElementById('cookie-cf').value = '';
                     checkStatus(false);
                 } else {
-                    showToast('Save Failed', data.error || 'Gagal menyimpan cookie.', 'error');
+                    showToast('Save Failed', data.message || data.error || 'Gagal menyimpan cookie.', 'error');
                 }
             } catch (err) {
                 showToast('API Connection Error', 'Gagal menyimpan cookie ke server.', 'error');

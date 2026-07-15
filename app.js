@@ -39,6 +39,32 @@ const CHROME_ARGS = [
 ];
 
 function getChromeExecutablePath() {
+  // 1. Check environment variables first
+  if (process.env.PUPPETEER_EXECUTABLE_PATH && fs.existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
+    return process.env.PUPPETEER_EXECUTABLE_PATH;
+  }
+  if (process.env.CHROME_BIN && fs.existsSync(process.env.CHROME_BIN)) {
+    return process.env.CHROME_BIN;
+  }
+
+  // 2. On Linux/macOS, query the system PATH dynamically (crucial for Nix/Nixpacks/Docker)
+  if (process.platform !== 'win32') {
+    try {
+      const execSync = require('child_process').execSync;
+      const pathFromWhich = execSync(
+        'command -v chromium || which chromium || command -v google-chrome-stable || which google-chrome-stable || command -v google-chrome || which google-chrome',
+        { stdio: [] }
+      ).toString().trim();
+      
+      if (pathFromWhich && fs.existsSync(pathFromWhich)) {
+        return pathFromWhich;
+      }
+    } catch (e) {
+      // Ignore errors if 'which' or 'command' fails
+    }
+  }
+
+  // 3. Fallback to hardcoded list of common paths
   const possiblePaths = [
     '/usr/bin/google-chrome-stable',
     '/usr/bin/google-chrome',
@@ -46,12 +72,12 @@ function getChromeExecutablePath() {
     '/usr/bin/chromium-browser',
     'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
     'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
-    process.env.CHROME_BIN,
-    process.env.PUPPETEER_EXECUTABLE_PATH,
   ];
   for (const p of possiblePaths) {
     if (p && fs.existsSync(p)) return p;
   }
+
+  // 4. Puppeteer built-in fallback
   try {
     return puppeteer.executablePath();
   } catch (e) {
